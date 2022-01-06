@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 const schedule = {
   "title": "CS Courses for 2018-2019",
@@ -38,11 +39,13 @@ const getCourseNumber = course => (
 );
 
 const Course = ({ course }) => (
-  <div>
-    { getCourseTerm(course) } CS { getCourseNumber(course) }: { course.title }
+  <div className="card m-1 p-2">
+    <div className="card-body">
+      <div className="card-title">{ getCourseTerm(course) } CS { getCourseNumber(course) }</div>
+      <div className="card-text">{ course.title }</div>
+    </div>
   </div>
 );
-
 
 
 const Banner = ({ title }) => (
@@ -52,13 +55,14 @@ const Banner = ({ title }) => (
 
 
 const CourseList = ({ courses }) => (
-  <div>
-    { Object.values(courses).map(course => <Course key={course.id} course={ course } />) }
+  <div className="course-list">
+  { Object.values(courses).map(course => <Course key={course.id} course={ course } />) }
   </div>
 );
 
+// To get nice page margins, put the entire app inside a container.
 const App = () =>  (
-  <div>
+  <div className="container">
     <Banner title={ schedule.title } />
     <CourseList courses={ schedule.courses } />
   </div>
